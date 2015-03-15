@@ -38,7 +38,7 @@ qplot(interval, MeanSteps,data =stepsperinterval, geom="line",  main="Average St
 Which Interval has the maximum number of mean steps
 
 ```{r CalculateMaxAverageSteps, echo=TRUE}
-stepsperinterval[stepsperinterval$MewdaywendanSteps==max(stepsperinterval$MeanSteps),]
+stepsperinterval[stepsperinterval$MeanSteps==max(stepsperinterval$MeanSteps),]
 ```
 
 ## Imputing missing values

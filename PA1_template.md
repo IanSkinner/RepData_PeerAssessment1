@@ -1,9 +1,4 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
+# Reproducible Research: Peer Assessment 1
 Load Libraries
 
 ```r
@@ -28,7 +23,7 @@ stepsperday <- tapply(activity$steps,activity$date,sum,na.rm=TRUE)
 qplot(stepsperday, geom="histogram", binwidth=1000, main="Histogram of Steps Per Day")
 ```
 
-![plot of chunk CalculateMean](figure/CalculateMean.png) 
+![plot of chunk CalculateMean](PA1_template_files/figure-html/CalculateMean.png) 
 
 ```r
 mean(stepsperday)
@@ -53,18 +48,18 @@ stepsperinterval <-ddply(activity,.(interval), summarize,MeanSteps= mean(steps, 
 qplot(interval, MeanSteps,data =stepsperinterval, geom="line",  main="Average Steps Per Interval")
 ```
 
-![plot of chunk CalculateDaily](figure/CalculateDaily.png) 
+![plot of chunk CalculateDaily](PA1_template_files/figure-html/CalculateDaily.png) 
 
 Which Interval has the maximum number of mean steps
 
 
 ```r
-stepsperinterval[stepsperinterval$MewdaywendanSteps==max(stepsperinterval$MeanSteps),]
+stepsperinterval[stepsperinterval$MeanSteps==max(stepsperinterval$MeanSteps),]
 ```
 
 ```
-## [1] interval  MeanSteps
-## <0 rows> (or 0-length row.names)
+##     interval MeanSteps
+## 104      835     206.2
 ```
 
 ## Imputing missing values
@@ -96,7 +91,7 @@ stepsperdayimputed <- tapply(activityImputed$steps,activityImputed$date,sum,na.r
 qplot(stepsperdayimputed, geom="histogram", binwidth=1000, main="Histogram of Steps Per Day")
 ```
 
-![plot of chunk CalculateMeanImputed](figure/CalculateMeanImputed.png) 
+![plot of chunk CalculateMeanImputed](PA1_template_files/figure-html/CalculateMeanImputed.png) 
 
 ```r
 mean(stepsperdayimputed)
@@ -147,4 +142,4 @@ Create a panel line plot comparing Weekday and Weekend
 qplot(interval, MeanSteps,data =wdaywendcomp, geom="line", color = wdaywend, main="", xlab ="Interval", ylab = "Number of Steps")+ theme(legend.position = "none") + facet_grid( .~ wdaywend)+ facet_wrap(~wdaywend, ncol=1)
 ```
 
-![plot of chunk comparisonwdaywend](figure/comparisonwdaywend.png) 
+![plot of chunk comparisonwdaywend](PA1_template_files/figure-html/comparisonwdaywend.png) 
