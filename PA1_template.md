@@ -133,13 +133,16 @@ Create a weekday/weekend factor and summarise
 
 ```r
 activityImputed$wdaywend <- as.factor(ifelse(weekdays(activityImputed$date) %in% c("Saturday","Sunday"), "Weekend", "Weekday"))
-wdaywendcomp <-ddply(activityImputed,.(interval,wdaywend), summarize,MeanSteps= mean(steps, na.rm=TRUE))
+wdaywendcomp <-ddply(activityImputed,.(interval,wdaywend), 
+                    summarize,MeanSteps= mean(steps, na.rm=TRUE))
 ```
 
 Create a panel line plot comparing Weekday and Weekend
 
 ```r
-qplot(interval, MeanSteps,data =wdaywendcomp, geom="line", color = wdaywend, main="", xlab ="Interval", ylab = "Number of Steps")+ theme(legend.position = "none") + facet_grid( .~ wdaywend)+ facet_wrap(~wdaywend, ncol=1)
+qplot(interval, MeanSteps,data =wdaywendcomp, geom="line", color = wdaywend, 
+    main="", xlab ="Interval", ylab = "Number of Steps")+
+    theme(legend.position = "none") + facet_grid( .~ wdaywend)+ facet_wrap(~wdaywend, ncol=1)
 ```
 
 ![plot of chunk comparisonwdaywend](PA1_template_files/figure-html/comparisonwdaywend.png) 
